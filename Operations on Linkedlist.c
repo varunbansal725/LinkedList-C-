@@ -19,8 +19,7 @@ void Insert(int x) {
         while(last->next)
         last=last->next;
         last->next=t;
-        last=t;
-    }
+      }
 }
 
 void Reverse() {
