@@ -59,6 +59,25 @@ void Display(struct Node *p) {
     printf("\n");
 }
 
+void Insert_in_sortedlist(struct Node *p, int element) {
+    struct Node *t, *q=NULL;
+    t=(struct Node *)malloc(sizeof(struct Node));
+    t->data=element;
+    t->next=NULL;
+    if(element < first->data) {
+        t->next=first;
+        first=t;
+    }
+    else {
+    while(p && element > p->data) {
+        q=p;
+        p=p->next;
+    }
+    t->next=q->next;
+    q->next=t;
+}
+}
+
 void main() {
     Insert(5);
     Display(first);
@@ -72,6 +91,8 @@ void main() {
     Display(first);
     Reverse(0);
     Display(first);
+    Insert_in_sortedlist(first, 0);
+    Display(first
     Delete_list(first);
     Display(first);
 }
