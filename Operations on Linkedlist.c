@@ -78,6 +78,26 @@ void Insert_in_sortedlist(struct Node *p, int element) {
 }
 }
 
+void copy(struct Node *p) {
+    struct Node *tail, *x, *y;
+    x=p;
+    head=(struct Node *)malloc(sizeof(struct Node));
+    head->data=first->data;
+    head->next=NULL;
+    tail=head;
+    x=x->next;
+    while(x) {
+        y=(struct Node *)malloc(sizeof(struct Node));
+        y->data=x->data;
+        y->next=NULL;
+        tail->next=y;
+        tail=y;
+        x=x->next;
+    }
+}
+
+
+
 void main() {
     Insert(5);
     Display(first);
@@ -95,4 +115,6 @@ void main() {
     Display(first
     Delete_list(first);
     Display(first);
+    copy(first);
+    Display(head);
 }
