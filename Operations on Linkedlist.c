@@ -96,6 +96,21 @@ void copy(struct Node *p) {
     }
 }
 
+void find_position(struct Node *p, int key) {
+    int position=0;
+    while(p)
+    {
+        if(p->data == key) {
+            printf("%d ", position);
+            p=p->next;
+            position++;
+        }
+        else {
+            p=p->next;
+            position++;
+        }
+    }
+}
 
 
 void main() {
@@ -117,4 +132,5 @@ void main() {
     Display(first);
     copy(first);
     Display(head);
+    find_position(first, 50);
 }
