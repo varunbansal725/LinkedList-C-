@@ -96,6 +96,8 @@ void copy(struct Node *p) {
     }
 }
 
+
+
 void find_position(struct Node *p, int key) {
     int position=0;
     while(p)
