@@ -115,6 +115,27 @@ int compare(struct Node *p, struct Node *q) {
         return -1;
 }
 
+void duplicate(int size) {
+    struct Node *p=first;
+    int hash[size],value;
+    for(int i=0; i<=size; i++)
+        hash[i]=0;
+    while(p) {
+        if(hash[p->data]==0)
+            hash[p->data]=1;
+        else
+            hash[p->data]++;
+        p=p->next;
+    }
+    for(int i=0; i <= size; i++) {
+        if(hash[i] > 1)
+            value=i; }
+        if(value > 1 && value < size)
+            printf("The duplicate value is: %d ", value);
+        else
+            printf("List contains no duplicates");
+}
+
 
 void find_position(struct Node *p, int key) {
     int position=0;
@@ -145,18 +166,19 @@ void main() {
     Display(first);
     Insert(100);
     Display(first);
-    Reverse(0);
+    Reverse();
     Display(first);
     Insert_in_sortedlist(first, 0);
-    Display(first
-    Delete_list(first);
     Display(first);
+    /* This call can be made to delete the whole linked list at once
+    Delete_list(first); */
     copy(first);
     Display(head);
     find_position(first, 50);
     a=compare(first,head);
     if(a==-1)
-        printf("Both lists are not equal");
+        printf("Both lists are not equal\n");
     else
-        printf("Lists are equal");
+        printf("Lists are equal\n");
+    duplicate(5);        
 }
