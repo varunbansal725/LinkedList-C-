@@ -96,6 +96,24 @@ void copy(struct Node *p) {
     }
 }
 
+int compare(struct Node *p, struct Node *q) {
+    int count1=0;
+    int count2=0;
+    while(p) { count1++; p=p->next; }
+    while(q) { count2++; q=q->next; }
+    if(count1==count2) {
+        while(p && q) {
+            if(p->data == q->data) {
+                p=p->data;
+                q=q->data;
+        }
+    else
+        break;
+    }
+}
+    else
+        return -1;
+}
 
 
 void find_position(struct Node *p, int key) {
@@ -116,6 +134,7 @@ void find_position(struct Node *p, int key) {
 
 
 void main() {
+    int a;
     Insert(5);
     Display(first);
     Insert(10);
@@ -135,4 +154,9 @@ void main() {
     copy(first);
     Display(head);
     find_position(first, 50);
+    a=compare(first,head);
+    if(a==-1)
+        printf("Both lists are not equal");
+    else
+        printf("Lists are equal");
 }
