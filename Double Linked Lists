@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+    struct Node *prev;
+    }*first=NULL;
+
+void create(int arr[], int size) {
+    struct Node *t, *last;
+    first=(struct Node *)malloc(sizeof(struct Node));
+    first->data=arr[0];
+    first->prev=NULL;
+    first->next=NULL;
+    last=first;
+    for(int i=1; i < size; i++) {
+        t=(struct Node *)malloc(sizeof(struct Node));
+        t->data=arr[i];
+        last->next=t;
+        t->prev=last;
+        t->next=NULL;
+        last=t;
+    }
+}
+
+void display(struct Node *p) {
+    while(p!=NULL) {
+        printf("%d ", p->data);
+        p=p->next;
+    }
+    printf("\n");
+}
+
+void insert_at_last(int element) {
+    struct Node *t, *last;
+    t=(struct Node *)malloc(sizeof(struct Node));
+    t->data=element;
+    t->next=NULL;
+    t->prev=NULL;
+    if(first==NULL) {
+        first=t;
+        last=first;
+    }
+    else {
+        last->next=t;
+        t->prev=last;
+        t->next=NULL;
+        last=t;
+    }
+}
+
+void delete(struct Node *p, int position) {
+    struct Node *temp=p;
+    int k=0;
+    if(position==0) {
+        p=p->next;
+        p->prev=NULL;
+        free(temp);
+    }
+    else {
+        while(temp && k < position) {
+            k++;
+            temp=temp->next;
+        }
+        if(temp->next!=NULL) {
+        temp->prev->next=temp->next;
+        temp->next->prev=temp->prev;
+        free(temp);
+        }
+        else {
+            temp->prev->next=NULL;
+            free(temp);
+        }
+    }
+}
+
+
+
+void main() {
+    int A[5]={1,2,3,4,5};
+    int size = sizeof(A) / sizeof(A[0]);
+    create(A, size);
+    /* The list can be made by inserting an element repeatedly also:
+    insert_at_last(5);
+    insert_at_last(10); */
+    display(first);
+    delete(first, 4);
+    display(first);
+
+}
