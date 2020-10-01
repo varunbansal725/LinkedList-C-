@@ -32,6 +32,16 @@ void display(struct Node *p) {
     printf("\n");
 }
 
+int count(struct Node *p) {
+    int count;
+    while(p) {
+        count++;
+        p=p->next;
+    }
+return count;
+}
+
+
 void insert_at_last(int element) {
     struct Node *t, *last;
     t=(struct Node *)malloc(sizeof(struct Node));
@@ -47,6 +57,41 @@ void insert_at_last(int element) {
         t->prev=last;
         t->next=NULL;
         last=t;
+    }
+}
+
+void insert(int position, int key) {
+    struct Node *t, *p=first;
+    t=(struct Node *)malloc(sizeof(struct Node));
+    t->data=key;
+    t->prev=NULL;
+    t->next=NULL;
+        if(position==0) {
+            t->next=first;
+            first->prev=t;
+            first=t;
+        }
+        else {
+        for(int i=0; i < position-1; i++)
+            p=p->next;
+
+        t->next=p->next;
+        p->next=t;
+        t->prev=p;
+        p->next->prev=t;
+        }
+}
+
+
+int search(struct Node *p, int key) {
+    int position=0;
+    while(p) {
+    if(p->data==key)
+        return position;
+    else {
+        p=p->next;
+        position++;
+    }
     }
 }
 
@@ -85,7 +130,11 @@ void main() {
     insert_at_last(5);
     insert_at_last(10); */
     display(first);
-    delete(first, 4);
+    printf("List is of %d elements\n", count(first));
+    delete(first, 2);
     display(first);
-
+    printf("List is of %d elements\n", count(first));
+    insert(4, 6);
+    display(first);
+    printf("%d\n", search(first, 6));
 }
