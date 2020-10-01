@@ -74,12 +74,18 @@ void insert(int position, int key) {
         else {
         for(int i=0; i < position-1; i++)
             p=p->next;
-
-        t->next=p->next;
-        p->next=t;
-        t->prev=p;
-        p->next->prev=t;
+        if(p->next!=NULL) {
+            t->next=p->next;
+            p->next=t;
+            t->prev=p;
+            t->next->prev=t;
         }
+        else if(p->next==NULL) {
+            t->next=p->next;
+            t->prev=p;
+            p->next=t;
+        }
+}
 }
 
 
