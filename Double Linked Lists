@@ -161,14 +161,49 @@ void duplicate(struct Node *p) {
         printf("There are no duplicates");
 }
 
+void sorted_insert(struct Node *p, int key) {
+    struct Node *t;
+    t=(struct Node *)malloc(sizeof(struct Node));
+    t->data=key;
+    t->prev=NULL;
+    t->next=NULL;
+    if(key < first->data) {
+        t->next=first;
+        first->prev=t;
+        first=t;
+    }
+    else {
+    while(p->next!=NULL && key > p->next->data)
+        p=p->next;
+    t->next=p->next;
+    t->prev=p;
+    p->next=t;
+    t->prev=p;
+}
+}
+
+void delete_list(struct Node *p) {
+    struct Node *temp=first;
+    while(p) {
+        temp=p;
+        p=p->next;
+        free(temp);
+    }
+    free(p);
+}
+
+
+
 void main() {
-    int A[5]={1,2,2,4,5};
+    int A[5]={1,2,3,5,6};
     int a;
     int size = sizeof(A) / sizeof(A[0]);
     create(A, size);
     /* The list can be made by inserting an element repeatedly also:
     insert_at_last(5);
     insert_at_last(10); */
+    display(first);
+    sorted_insert(first, 4);
     display(first);
     printf("List is of %d elements\n", count(first));
     delete(first, 3);
@@ -181,5 +216,5 @@ void main() {
     display(first);
     printf("List is of %d elements\n", count(first));
     duplicate(first);
-
+    delete_list(first);
 }
