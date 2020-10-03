@@ -5,7 +5,7 @@ struct Node {
     int data;
     struct Node *next;
     struct Node *prev;
-    }*first=NULL;
+    }*first=NULL, *head=NULL;
 
 void create(int arr[], int size) {
     struct Node *t, *last;
@@ -158,7 +158,7 @@ void duplicate(struct Node *p) {
     if(a > 1 && a < 5)
         printf("The duplicate value is %d\n", a);
     else
-        printf("There are no duplicates");
+        printf("There are no duplicates\n");
 }
 
 void sorted_insert(struct Node *p, int key) {
@@ -192,6 +192,25 @@ void delete_list(struct Node *p) {
     free(p);
 }
 
+void copy_list(struct Node *p) {
+    struct Node *t, *tail;
+    head=(struct Node *)malloc(sizeof(struct Node));
+    head->data=p->data;
+    head->next=NULL;
+    head->prev=NULL;
+    tail=head;
+    p=p->next;
+    while(p) {
+        t=(struct Node *)malloc(sizeof(struct Node));
+        t->data=p->data;
+        tail->next=t;
+        t->prev=tail;
+        t->next=NULL;
+        tail=t;
+        p=p->next;
+    }
+}
+
 
 
 void main() {
@@ -217,4 +236,8 @@ void main() {
     printf("List is of %d elements\n", count(first));
     duplicate(first);
     delete_list(first);
+    create(A, size);
+    display(first);
+    copy_list(first);
+    display(head);
 }
