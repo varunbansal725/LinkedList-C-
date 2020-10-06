@@ -4,7 +4,7 @@
 struct Node {
     int data;
     struct Node *next;
-}*first=NULL;
+}*first=NULL, *head=NULL, *third=NULL;
 
 /* This Insert function is to add the element always at the end of the linked list */
 void Insert(int x) {
