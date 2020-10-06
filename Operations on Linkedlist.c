@@ -153,6 +153,15 @@ void find_position(struct Node *p, int key) {
     }
 }
 
+void concatenate(struct Node *p, struct Node *q) {
+    if(p && q) {
+    third=p;
+    while(p->next!=NULL)
+        p=p->next;
+    p->next=q;
+    }
+}
+
 
 void main() {
     int a;
@@ -180,5 +189,7 @@ void main() {
         printf("Both lists are not equal\n");
     else
         printf("Lists are equal\n");
-    duplicate(5);        
+    duplicate(5);
+    concatenate(first, head);
+    Display(third);
 }
