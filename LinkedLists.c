@@ -4,7 +4,7 @@
 struct Node {
     int data;
     struct Node *next;
-    }*first=NULL;
+    }*first=NULL, *second=NULL, *third=NULL, *fourth=NULL;
 
 void create_linkedlist(int arr[], int size) {
     struct Node *t,*last;
@@ -19,6 +19,36 @@ void create_linkedlist(int arr[], int size) {
         t->next=NULL;
         last->next=t;
         last=t;
+    }
+}
+
+void create1(int arr[], int size) {
+    struct Node *t, *tail;
+    second=(struct Node *)malloc(sizeof(struct Node));
+    second->data=arr[0];
+    second->next=NULL;
+    tail=second;
+    for(int i=1; i < size; i++) {
+        t=(struct Node *)malloc(sizeof(struct Node));
+        t->data=arr[i];
+        t->next=NULL;
+        tail->next=t;
+        tail=t;
+    }
+}
+
+void create2(int arr[], int size) {
+    struct Node *t, *tail;
+    =(struct Node *)malloc(sizeof(struct Node));
+    third->data=arr[0];
+    third->next=NULL;
+    tail=third;
+    for(int i=1; i < size; i++) {
+        t=(struct Node *)malloc(sizeof(struct Node));
+        t->data=arr[i];
+        t->next=NULL;
+        tail->next=t;
+        tail=t;
     }
 }
 
@@ -77,15 +107,55 @@ void Deletion(struct Node *temp, int position) {
         }
 }
 
+void merge(struct Node *p, struct Node *q) {
+    struct Node *last;
+    if(p->data < q->data) {
+        fourth=last=p;
+        p=p->next;
+        f->next=NULL;
+    }
+    else {
+        fourth=last=q;
+        q=q->next;
+        fourth->next=NULL;
+    }
+    while(p && q) {
+
+        if(p->data < q->data) {
+            last->next=p;
+            last=p;
+            p=p->next;
+            last->next=NULL;
+        }
+        else {
+            last->next=q;
+            last=q;
+            q=q->next;
+            last->next=NULL;
+        }
+    }
+    if(p)
+        last->next=p;
+    if(q)
+        last->next=q;
+}
+
 
 int main() {
     int i,size;
     int A[10]={1,2,3,4,5,7,8,9,10,11};
+    int B[10]={10,20,30,40,50,60,70,80,90,100};
+    int C[10]={12,16,24,35,59,62,65,72,78,85};
+    
     /*printf("Enter the elements of the array");
     for(i=0; i < 10; i++)
         scanf("%d", &A[i]);  */
     create_linkedlist(A, 10);
     Display(first);
+    create_linkedlist(B, 10);
+    Display(second);
+    create_linkedlist(C, 10);
+    Display(third);
     printf("\n");
     Insertion(first, 5, 6);
     Display(first);
@@ -94,4 +164,6 @@ int main() {
     Deletion(first, 5);
     printf("\n");
     Display(first);
+    merge(second, third);
+    Display(fourth);
 }
