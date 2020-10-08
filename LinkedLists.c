@@ -277,7 +277,7 @@ int detect_loop(struct Node *q) {
 
 int main() {
     int i,size,a;
-    struct Node *last, *x;
+    struct Node *last, *x;/* initializing struct variables for detecting loop. These will only be used for detecting loop function */
     int A[10]={1,2,3,4,5,7,8,9,10,11};
     int B[10]={10,20,30,40,50,60,70,80,90,100};
     int C[10]={12,16,24,35,59,62,65,72,78,85};
